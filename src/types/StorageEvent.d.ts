@@ -2,6 +2,7 @@ interface OrchyStorageGetEvent {
     label: 'orchy-storage:get',
     payload: {
         key: any;
+        value: undefined;
     }
 }
 
@@ -17,15 +18,26 @@ interface OrchyStorageDeleteEvent {
     label: 'orchy-storage:delete',
     payload: {
         key: any;
+        value: undefined;
     }
 }
 
 interface OrchyStorageClearEvent {
-    label: 'orchy-storage:clear'
+    label: 'orchy-storage:clear',
+    payload: undefined
 }
 
 interface NonOrchyStorageEvent {
-    label: undefined
+    label: undefined,
+    payload: undefined
 }
 
-export type OrchyStorageEvent = OrchyStorageGetEvent | OrchyStoragePostEvent | OrchyStorageDeleteEvent | OrchyStorageClearEvent | NonOrchyStorageEvent
+interface OrchyStorageGetResultEvent {
+    label: 'orchy-storage:get:result',
+    payload: {
+        key: any;
+        value: any;
+    }
+}
+
+export type OrchyStorageEvent = OrchyStorageGetEvent | OrchyStorageGetResultEvent | OrchyStoragePostEvent | OrchyStorageDeleteEvent | OrchyStorageClearEvent | NonOrchyStorageEvent
