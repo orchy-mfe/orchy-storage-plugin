@@ -1,9 +1,9 @@
-import {LitElement} from 'lit'
+import { LitElement } from 'lit';
 export declare class OrchyStoragePlugin extends LitElement {
-    strategy: 'local' | 'session'
-    private eventBus?
+    strategy: 'local' | 'session';
+    private eventBus?;
     connectedCallback(): void;
-    private buildResultPayload
+    private buildResultPayload;
 }
 declare global {
     interface HTMLElementTagNameMap {

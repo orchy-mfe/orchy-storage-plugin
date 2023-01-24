@@ -1,1 +1,1 @@
-import './orchy-storage-plugin'
+import './orchy-storage-plugin';
