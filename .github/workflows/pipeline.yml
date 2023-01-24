@@ -1,4 +1,4 @@
-name: orchy-core CI
+name: orchy-storage-plugin CI
 
 on:
   push:
