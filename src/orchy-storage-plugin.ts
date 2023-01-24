@@ -1,4 +1,4 @@
-import {html, LitElement} from 'lit'
+import {LitElement} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
 import {filter, ReplaySubject} from 'rxjs'
 
@@ -25,10 +25,6 @@ export class OrchyStoragePlugin extends LitElement {
         this.eventBus?.next(this.buildResultPayload(event, result))
       }
     })
-  }
-
-  render() {
-    return html``
   }
 
   private buildResultPayload(event: OrchyStorageEvent, value: any): OrchyStorageEvent {

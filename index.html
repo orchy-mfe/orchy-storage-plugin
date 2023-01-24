@@ -5,12 +5,22 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + Lit + TS</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/my-element.ts"></script>
+    <script type="module" src="/src/orchy-storage-plugin.ts"></script>
   </head>
   <body>
-    <my-element>
-      <h1>Vite + Lit</h1>
-    </my-element>
+    <script type="module">
+      import {ReplaySubject} from 'rxjs'
+      const eventBus = new ReplaySubject()
+
+      const storageLocalPlugin = document.createElement('orchy-storage-plugin')
+      storageLocalPlugin.eventBus = eventBus
+
+      const storageSessionPlugin = document.createElement('orchy-storage-plugin')
+      storageSessionPlugin.setAttribute('strategy', 'session')
+      storageSessionPlugin.eventBus = eventBus
+
+      document.body.appendChild(storageLocalPlugin)
+      document.body.appendChild(storageSessionPlugin)
+    </script>
   </body>
 </html>
