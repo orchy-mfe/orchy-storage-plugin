@@ -17,8 +17,12 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "test": "vitest",
+    "test:coverage": "vitest run --coverage",
+    "coverage": "pnpm test --coverage",
     "lint": "eslint .",
-    "lint:fix": "pnpm lint --fix"
+    "lint:fix": "pnpm lint --fix",
+    "prepare": "pnpm lint:fix"
   },
   "dependencies": {
     "lit": "^2.6.1",
