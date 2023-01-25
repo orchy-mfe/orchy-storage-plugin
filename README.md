@@ -10,6 +10,30 @@ The plugin accepts one attribute:
 The plugin accepts one property:
 - `eventBus`: the `orchy's eventBus` instance.
 
+#### Configuration example
+
+Note that the `eventBus` property will be automatically injected by `orchy`.
+
+#### JSON
+
+```json
+{
+    "type": "element",
+    "tag": "orchy-storage-plugin",
+    "url": "//localhost:3000/orchy-storage-plugin.js",
+    "attributes": {
+        "strategy": "local", // or "session"
+    }
+}
+```
+
+#### HTML
+
+```html
+<script type="module" src="//localhost:3000/orchy-storage-plugin.js"></script>
+<orchy-storage-plugin orchy-element strategy="local"></orchy-storage-plugin>
+```
+
 ### EventBus messages
 
 #### Retrieve data
