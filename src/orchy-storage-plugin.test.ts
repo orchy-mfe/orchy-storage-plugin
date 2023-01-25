@@ -100,6 +100,20 @@ describe('orchy-storage-plugin', () => {
             })
         }))
 
+        test(`${Events.GET} without data`, () => new Promise(resolve => {
+            const key = 'fooKeu'
+
+            const plugin = createPlugin()
+            document.body.appendChild(plugin)
+            plugin.eventBus?.next(eventsBuilder.get(key))
+            plugin.eventBus?.subscribe(event => {
+                if (event.label === Events.GET_RESULT) {
+                    expect(event.payload.value).toBeNull()
+                    resolve(true)
+                }
+            })
+        }))
+
         test(Events.POST, () => {
             const value = 'fooValue'
             const key = 'foo'

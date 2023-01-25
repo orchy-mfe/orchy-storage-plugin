@@ -2,6 +2,8 @@ import {LitElement} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
 import {filter, ReplaySubject} from 'rxjs'
 
+import {Events} from './events/events'
+import {getResultEventBuilder} from './events/eventsBuilder'
 import {localStorageActions} from './strategies/local'
 import {sessionStorageActions} from './strategies/session'
 import {OrchyStorageEvent} from './types/StorageEvent'
@@ -21,20 +23,10 @@ export class OrchyStoragePlugin extends LitElement {
     ).subscribe(event => {
       const functionToUse = strategyToUse[event.label!]
       const result = functionToUse?.(event.payload?.key, event.payload?.value)
-      if (result) {
-        this.eventBus?.next(this.buildResultPayload(event, result))
+      if (event.label === Events.GET) {
+        this.eventBus?.next(getResultEventBuilder(event, result))
       }
     })
-  }
-
-  private buildResultPayload(event: OrchyStorageEvent, value: any): OrchyStorageEvent {
-    return {
-      label: 'orchy-storage:get:result',
-      payload: {
-        key: event.payload?.key,
-        value
-      }
-    }
   }
 }
 
