@@ -3,7 +3,7 @@ import {customElement, property} from 'lit/decorators.js'
 import {filter, ReplaySubject} from 'rxjs'
 
 import {Events} from './events/events'
-import {getResultEventBuilder} from './events/eventsBuilder'
+import {eventsBuilder, getResultEventBuilder} from './events/eventsBuilder'
 import {localStorageActions} from './strategies/local'
 import {sessionStorageActions} from './strategies/session'
 import {OrchyStorageEvent} from './types/StorageEvent'
@@ -29,6 +29,9 @@ export class OrchyStoragePlugin extends LitElement {
     })
   }
 }
+
+export const orchyStorageEventsBuilder = eventsBuilder
+export const OrchyStorageEvents = Events
 
 declare global {
   interface HTMLElementTagNameMap {
