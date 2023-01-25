@@ -4,7 +4,8 @@
   "type": "module",
   "main": "dist/orchy-storage-plugin.js",
   "exports": {
-    ".": "./dist/orchy-storage-plugin.js"
+    ".": "./dist/orchy-storage-plugin.js",
+    "./utils": "./dist/orchy-storage-plugin-utils.js"
   },
   "types": "types/orchy-storage-plugin.d.ts",
   "files": [

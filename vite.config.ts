@@ -6,9 +6,11 @@ export default defineConfig({
   plugins: [visualizer()],
   build: {
     lib: {
-      entry: 'src/orchy-storage-plugin.ts',
-      formats: ['es'],
-      fileName: 'orchy-storage-plugin'
+      entry: {
+        'orchy-storage-plugin': 'src/orchy-storage-plugin.ts',
+        'orchy-storage-plugin-utils': 'src/orchy-storage-plugin-utils.ts'
+      },
+      formats: ['es']
     },
   },
   test: {
