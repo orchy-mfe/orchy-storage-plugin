@@ -1,5 +1,6 @@
 import {afterEach, describe, expect, test} from 'vitest'
 
+import {Events} from '../events/events'
 import {localStorageActions} from './local'
 
 describe('local stategy test', () => {
@@ -8,33 +9,33 @@ describe('local stategy test', () => {
         localStorage.clear()
     })
 
-    describe('orchy-storage:get', () => {
+    describe(Events.GET, () => {
         test('without data', () => {
-            const result = localStorageActions['orchy-storage:get']('foo', undefined)
+            const result = localStorageActions[Events.GET]('foo', undefined)
 
             expect(result).toBeNull()
         })
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions['orchy-storage:get']('foo', undefined)
+            const result = localStorageActions[Events.GET]('foo', undefined)
 
             expect(result).toBe('fooValue')
         })
     })
 
-    describe('orchy-storage:post', () => {
+    describe(Events.POST, () => {
         test('without data', () => {
-            const result = localStorageActions['orchy-storage:post']('foo', 'fooValue')
+            const result = localStorageActions[Events.POST]('foo', 'fooValue')
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBe('fooValue')
         })
     })
 
-    describe('orchy-storage:delete', () => {
+    describe(Events.DELETE, () => {
         test('without data', () => {
-            const result = localStorageActions['orchy-storage:delete']('foo', undefined)
+            const result = localStorageActions[Events.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
@@ -42,16 +43,16 @@ describe('local stategy test', () => {
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions['orchy-storage:delete']('foo', undefined)
+            const result = localStorageActions[Events.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
         })
     })
 
-    describe('orchy-storage:clear', () => {
+    describe(Events.CLEAR, () => {
         test('without data', () => {
-            const result = localStorageActions['orchy-storage:clear'](undefined, undefined)
+            const result = localStorageActions[Events.CLEAR](undefined, undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
@@ -59,7 +60,7 @@ describe('local stategy test', () => {
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions['orchy-storage:delete']('foo', undefined)
+            const result = localStorageActions[Events.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
