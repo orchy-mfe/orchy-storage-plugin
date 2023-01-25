@@ -2,11 +2,11 @@ import {LitElement} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
 import {filter, ReplaySubject} from 'rxjs'
 
-import {Events} from './events/events'
 import {eventsBuilder, getResultEventBuilder} from './events/eventsBuilder'
+import {EventsLabels} from './events/eventsLabels'
+import {OrchyStorageEvent} from './events/StorageEvent'
 import {localStorageActions} from './strategies/local'
 import {sessionStorageActions} from './strategies/session'
-import {OrchyStorageEvent} from './types/StorageEvent'
 
 @customElement('orchy-storage-plugin')
 export class OrchyStoragePlugin extends LitElement {
@@ -23,7 +23,7 @@ export class OrchyStoragePlugin extends LitElement {
     ).subscribe(event => {
       const functionToUse = strategyToUse[event.label!]
       const result = functionToUse?.(event.payload?.key, event.payload?.value)
-      if (event.label === Events.GET) {
+      if (event.label === EventsLabels.GET) {
         this.eventBus?.next(getResultEventBuilder(event, result))
       }
     })
@@ -31,7 +31,7 @@ export class OrchyStoragePlugin extends LitElement {
 }
 
 export const orchyStorageEventsBuilder = eventsBuilder
-export const OrchyStorageEvents = Events
+export const OrchyStorageEventsLabels = EventsLabels
 
 declare global {
   interface HTMLElementTagNameMap {

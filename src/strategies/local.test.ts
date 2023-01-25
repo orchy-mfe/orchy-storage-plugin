@@ -1,6 +1,6 @@
 import {afterEach, describe, expect, test} from 'vitest'
 
-import {Events} from '../events/events'
+import {EventsLabels} from '../events/eventsLabels'
 import {localStorageActions} from './local'
 
 describe('local stategy test', () => {
@@ -9,33 +9,33 @@ describe('local stategy test', () => {
         localStorage.clear()
     })
 
-    describe(Events.GET, () => {
+    describe(EventsLabels.GET, () => {
         test('without data', () => {
-            const result = localStorageActions[Events.GET]('foo', undefined)
+            const result = localStorageActions[EventsLabels.GET]('foo', undefined)
 
             expect(result).toBeNull()
         })
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions[Events.GET]('foo', undefined)
+            const result = localStorageActions[EventsLabels.GET]('foo', undefined)
 
             expect(result).toBe('fooValue')
         })
     })
 
-    describe(Events.POST, () => {
+    describe(EventsLabels.POST, () => {
         test('without data', () => {
-            const result = localStorageActions[Events.POST]('foo', 'fooValue')
+            const result = localStorageActions[EventsLabels.POST]('foo', 'fooValue')
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBe('fooValue')
         })
     })
 
-    describe(Events.DELETE, () => {
+    describe(EventsLabels.DELETE, () => {
         test('without data', () => {
-            const result = localStorageActions[Events.DELETE]('foo', undefined)
+            const result = localStorageActions[EventsLabels.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
@@ -43,16 +43,16 @@ describe('local stategy test', () => {
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions[Events.DELETE]('foo', undefined)
+            const result = localStorageActions[EventsLabels.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
         })
     })
 
-    describe(Events.CLEAR, () => {
+    describe(EventsLabels.CLEAR, () => {
         test('without data', () => {
-            const result = localStorageActions[Events.CLEAR](undefined, undefined)
+            const result = localStorageActions[EventsLabels.CLEAR](undefined, undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()
@@ -60,7 +60,7 @@ describe('local stategy test', () => {
 
         test('with data data', () => {
             localStorage.setItem('foo', 'fooValue')
-            const result = localStorageActions[Events.DELETE]('foo', undefined)
+            const result = localStorageActions[EventsLabels.DELETE]('foo', undefined)
 
             expect(result).toBeUndefined()
             expect(localStorage.getItem('foo')).toBeNull()

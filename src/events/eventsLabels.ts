@@ -1,4 +1,4 @@
-export const Events = {
+export const EventsLabels = {
     GET: 'orchy-storage:get',
     GET_RESULT: 'orchy-storage:get:result',
     POST: 'orchy-storage:post',

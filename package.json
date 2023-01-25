@@ -3,9 +3,6 @@
   "version": "0.1.0",
   "type": "module",
   "main": "dist/orchy-storage-plugin.js",
-  "publishConfig": {
-    "access": "public"
-  },
   "exports": {
     ".": "./dist/orchy-storage-plugin.js"
   },
@@ -14,6 +11,9 @@
     "dist",
     "types"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
@@ -22,14 +22,13 @@
     "coverage": "pnpm test --coverage",
     "lint": "eslint .",
     "lint:fix": "pnpm lint --fix",
-    "prepare": "pnpm lint:fix"
+    "prepare": "pnpm build && pnpm lint:fix"
   },
   "dependencies": {
     "lit": "^2.6.1",
     "rxjs": "^7.8.0"
   },
   "devDependencies": {
-    "@orchy-mfe/models": "^0.3.0",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
     "@vitest/coverage-c8": "^0.28.2",

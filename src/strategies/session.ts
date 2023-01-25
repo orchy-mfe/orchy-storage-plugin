@@ -1,10 +1,10 @@
-import {Events} from '../events/events'
-import {OrchyStorageEvent} from '../types/StorageEvent'
+import {EventsLabels} from '../events/eventsLabels'
+import {OrchyStorageEvent} from '../events/StorageEvent'
 
 export const sessionStorageActions: Record<NonNullable<OrchyStorageEvent['label']>, (key: any, value: any) => any | undefined> = {
-    [Events.CLEAR]: sessionStorage.clear.bind(sessionStorage),
-    [Events.DELETE]: sessionStorage.removeItem.bind(sessionStorage),
-    [Events.GET]: sessionStorage.getItem.bind(sessionStorage),
-    [Events.GET_RESULT]: () => undefined,
-    [Events.POST]: sessionStorage.setItem.bind(sessionStorage)
+    [EventsLabels.CLEAR]: sessionStorage.clear.bind(sessionStorage),
+    [EventsLabels.DELETE]: sessionStorage.removeItem.bind(sessionStorage),
+    [EventsLabels.GET]: sessionStorage.getItem.bind(sessionStorage),
+    [EventsLabels.GET_RESULT]: () => undefined,
+    [EventsLabels.POST]: sessionStorage.setItem.bind(sessionStorage)
 }

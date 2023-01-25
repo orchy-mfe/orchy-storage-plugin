@@ -3,8 +3,8 @@ import './orchy-storage-plugin'
 import {ReplaySubject} from 'rxjs'
 import {afterEach, beforeEach, describe, expect, test} from 'vitest'
 
-import {Events} from './events/events'
 import {eventsBuilder} from './events/eventsBuilder'
+import {EventsLabels} from './events/eventsLabels'
 
 describe('orchy-storage-plugin', () => {
     describe('local strategy', () => {
@@ -19,7 +19,7 @@ describe('orchy-storage-plugin', () => {
             return storagePlugin
         }
 
-        test(Events.GET, () => new Promise(resolve => {
+        test(EventsLabels.GET, () => new Promise(resolve => {
             const value = 'fooValue'
             const key = 'foo'
             localStorage.setItem(key, value)
@@ -28,14 +28,14 @@ describe('orchy-storage-plugin', () => {
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.get(key))
             plugin.eventBus?.subscribe(event => {
-                if(event.label === Events.GET_RESULT) {
+                if(event.label === EventsLabels.GET_RESULT) {
                     expect(event.payload.value).toBe(value)
                     resolve(true)
                 }
             })
         }))
 
-        test(Events.POST, () => {
+        test(EventsLabels.POST, () => {
             const value = 'fooValue'
             const key = 'foo'
 
@@ -47,7 +47,7 @@ describe('orchy-storage-plugin', () => {
             expect(localStorage.getItem(key)).toBe(value)
         })
 
-        test(Events.DELETE, () => {
+        test(EventsLabels.DELETE, () => {
             const value = 'fooValue'
             const key = 'foo'
             localStorage.setItem(key, value)
@@ -59,7 +59,7 @@ describe('orchy-storage-plugin', () => {
             expect(localStorage.getItem(key)).toBeNull()
         })
 
-        test(Events.CLEAR, () => {
+        test(EventsLabels.CLEAR, () => {
             const value = 'fooValue'
             const key = 'foo'
             localStorage.setItem(key, value)
@@ -84,7 +84,7 @@ describe('orchy-storage-plugin', () => {
             return storagePlugin
         }
 
-        test(Events.GET, () => new Promise(resolve => {
+        test(EventsLabels.GET, () => new Promise(resolve => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
@@ -93,28 +93,28 @@ describe('orchy-storage-plugin', () => {
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.get(key))
             plugin.eventBus?.subscribe(event => {
-                if (event.label === Events.GET_RESULT) {
+                if (event.label === EventsLabels.GET_RESULT) {
                     expect(event.payload.value).toBe(value)
                     resolve(true)
                 }
             })
         }))
 
-        test(`${Events.GET} without data`, () => new Promise(resolve => {
+        test(`${EventsLabels.GET} without data`, () => new Promise(resolve => {
             const key = 'fooKeu'
 
             const plugin = createPlugin()
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.get(key))
             plugin.eventBus?.subscribe(event => {
-                if (event.label === Events.GET_RESULT) {
+                if (event.label === EventsLabels.GET_RESULT) {
                     expect(event.payload.value).toBeNull()
                     resolve(true)
                 }
             })
         }))
 
-        test(Events.POST, () => {
+        test(EventsLabels.POST, () => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
@@ -127,7 +127,7 @@ describe('orchy-storage-plugin', () => {
             expect(sessionStorage.getItem(key)).toBe(value)
         })
 
-        test(Events.DELETE, () => {
+        test(EventsLabels.DELETE, () => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
@@ -139,7 +139,7 @@ describe('orchy-storage-plugin', () => {
             expect(sessionStorage.getItem(key)).toBeNull()
         })
 
-        test(Events.CLEAR, () => {
+        test(EventsLabels.CLEAR, () => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
