@@ -1,6 +1,6 @@
-import {LitElement} from 'lit'
+import {LitElement, PropertyValueMap} from 'lit'
 import {customElement, property} from 'lit/decorators.js'
-import {filter, ReplaySubject} from 'rxjs'
+import {filter, ReplaySubject, Subscription} from 'rxjs'
 
 import {eventsBuilder, getResultEventBuilder} from './events/eventsBuilder'
 import {EventsLabels} from './events/eventsLabels'
@@ -16,9 +16,12 @@ export class OrchyStoragePlugin extends LitElement {
   @property({attribute: false})
   private eventBus?: ReplaySubject<OrchyStorageEvent>
 
-  connectedCallback(): void {
+  private subscription?: Subscription
+
+  protected override firstUpdated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>): void {
+    super.firstUpdated(changedProperties)
     const strategyToUse = this.strategy === 'local' ? localStorageActions : sessionStorageActions
-    this.eventBus?.pipe(
+    this.subscription = this.eventBus?.pipe(
       filter(event => Boolean(event.label?.startsWith('orchy-storage:')))
     ).subscribe(event => {
       const functionToUse = strategyToUse[event.label!]
@@ -27,6 +30,10 @@ export class OrchyStoragePlugin extends LitElement {
         this.eventBus?.next(getResultEventBuilder(event, result))
       }
     })
+  }
+
+  disconnectedCallback(): void {
+    this.subscription?.unsubscribe()
   }
 }
 

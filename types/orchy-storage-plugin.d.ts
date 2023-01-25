@@ -1,8 +1,10 @@
-import {LitElement} from 'lit'
+import {LitElement, PropertyValueMap} from 'lit'
 export declare class OrchyStoragePlugin extends LitElement {
     strategy: 'local' | 'session'
     private eventBus?
-    connectedCallback(): void;
+    private subscription?
+    protected firstUpdated(changedProperties: PropertyValueMap<unknown> | Map<PropertyKey, unknown>): void;
+    disconnectedCallback(): void;
 }
 export declare const orchyStorageEventsBuilder: {
     get: (key: any) => import('./events/StorageEvent').OrchyStorageGetEvent;

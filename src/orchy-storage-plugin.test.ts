@@ -7,6 +7,7 @@ import {eventsBuilder} from './events/eventsBuilder'
 import {EventsLabels} from './events/eventsLabels'
 
 describe('orchy-storage-plugin', () => {
+    const eventFlush = () => new Promise(resolve => setTimeout(resolve, 100))
     describe('local strategy', () => {
         beforeEach(() => localStorage.clear())
 
@@ -35,19 +36,34 @@ describe('orchy-storage-plugin', () => {
             })
         }))
 
-        test(EventsLabels.POST, () => {
+        test(`${EventsLabels.GET} without data`, () => new Promise(resolve => {
+            const key = 'fooKeu'
+
+            const plugin = createPlugin()
+            document.body.appendChild(plugin)
+            plugin.eventBus?.next(eventsBuilder.get(key))
+            plugin.eventBus?.subscribe(event => {
+                if (event.label === EventsLabels.GET_RESULT) {
+                    expect(event.payload.value).toBeNull()
+                    resolve(true)
+                }
+            })
+        }))
+
+        test(EventsLabels.POST, async () => {
             const value = 'fooValue'
             const key = 'foo'
 
             const plugin = createPlugin()
             document.body.appendChild(plugin)
-
             plugin.eventBus?.next(eventsBuilder.post(key, value))
+
+            await eventFlush()
 
             expect(localStorage.getItem(key)).toBe(value)
         })
 
-        test(EventsLabels.DELETE, () => {
+        test(EventsLabels.DELETE, async () => {
             const value = 'fooValue'
             const key = 'foo'
             localStorage.setItem(key, value)
@@ -56,10 +72,12 @@ describe('orchy-storage-plugin', () => {
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.delete(key))
 
+            await eventFlush()
+
             expect(localStorage.getItem(key)).toBeNull()
         })
 
-        test(EventsLabels.CLEAR, () => {
+        test(EventsLabels.CLEAR, async () => {
             const value = 'fooValue'
             const key = 'foo'
             localStorage.setItem(key, value)
@@ -67,6 +85,8 @@ describe('orchy-storage-plugin', () => {
             const plugin = createPlugin()
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.clear())
+
+            await eventFlush()
 
             expect(localStorage.getItem(key)).toBeNull()
         })
@@ -114,20 +134,20 @@ describe('orchy-storage-plugin', () => {
             })
         }))
 
-        test(EventsLabels.POST, () => {
+        test(EventsLabels.POST, async () => {
             const value = 'fooValue'
             const key = 'foo'
-            sessionStorage.setItem(key, value)
 
             const plugin = createPlugin()
             document.body.appendChild(plugin)
-
             plugin.eventBus?.next(eventsBuilder.post(key, value))
+
+            await eventFlush()
 
             expect(sessionStorage.getItem(key)).toBe(value)
         })
 
-        test(EventsLabels.DELETE, () => {
+        test(EventsLabels.DELETE, async () => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
@@ -136,10 +156,12 @@ describe('orchy-storage-plugin', () => {
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.delete(key))
 
+            await eventFlush()
+
             expect(sessionStorage.getItem(key)).toBeNull()
         })
 
-        test(EventsLabels.CLEAR, () => {
+        test(EventsLabels.CLEAR, async () => {
             const value = 'fooValue'
             const key = 'foo'
             sessionStorage.setItem(key, value)
@@ -147,6 +169,8 @@ describe('orchy-storage-plugin', () => {
             const plugin = createPlugin()
             document.body.appendChild(plugin)
             plugin.eventBus?.next(eventsBuilder.clear())
+
+            await eventFlush()
 
             expect(sessionStorage.getItem(key)).toBeNull()
         })
