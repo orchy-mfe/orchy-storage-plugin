@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   lit:
-    specifier: ^2.7.3
-    version: 2.7.3
+    specifier: ^2.7.4
+    version: 2.7.4
   rxjs:
     specifier: ^7.8.1
     version: 7.8.1
@@ -1349,8 +1349,8 @@ packages:
       '@types/trusted-types': 2.0.2
     dev: false
 
-  /lit@2.7.3:
-    resolution: {integrity: sha512-0a+u+vVbmgSfPu+fyvqjMPBX0Kwbyj9QOv9MbQFZhWGlV2cyk3lEwgfUQgYN+i/lx++1Z3wZknSIp3QCKxHLyg==}
+  /lit@2.7.4:
+    resolution: {integrity: sha512-cgD7xrZoYr21mbrkZIuIrj98YTMw/snJPg52deWVV4A8icLyNHI3bF70xsJeAgwTuiq5Kkd+ZR8gybSJDCPB7g==}
     dependencies:
       '@lit/reactive-element': 1.6.1
       lit-element: 3.3.0
