@@ -27,7 +27,7 @@
     "prepare": "pnpm build && pnpm lint:fix"
   },
   "dependencies": {
-    "lit": "^2.7.4",
+    "lit": "^2.7.5",
     "rxjs": "^7.8.1"
   },
   "devDependencies": {
