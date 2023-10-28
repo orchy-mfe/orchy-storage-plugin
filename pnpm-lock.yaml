@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   lit:
-    specifier: ^3.0.0
-    version: 3.0.0
+    specifier: ^3.0.1
+    version: 3.0.1
   rxjs:
     specifier: ^7.8.1
     version: 7.8.1
@@ -1477,8 +1477,8 @@ packages:
       '@types/trusted-types': 2.0.2
     dev: false
 
-  /lit@3.0.0:
-    resolution: {integrity: sha512-nQ0teRzU1Kdj++VdmttS2WvIen8M79wChJ6guRKIIym2M3Ansg3Adj9O6yuQh2IpjxiUXlNuS81WKlQ4iL3BmA==}
+  /lit@3.0.1:
+    resolution: {integrity: sha512-CYFv7/gwrs6bfPm299O9LD/HB4dgHvsEf/yqUOI//fi469i2OrT4xaptUcmhr05DNQEgsBFecFH8EJnN5So8oQ==}
     dependencies:
       '@lit/reactive-element': 2.0.0
       lit-element: 4.0.0
