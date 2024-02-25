@@ -35,8 +35,8 @@ devDependencies:
     specifier: ^12.0.0
     version: 12.0.0(eslint@8.57.0)
   happy-dom:
-    specifier: ^13.5.3
-    version: 13.5.3
+    specifier: ^13.6.0
+    version: 13.6.0
   prettier:
     specifier: ^3.2.5
     version: 3.2.5
@@ -51,7 +51,7 @@ devDependencies:
     version: 5.1.4
   vitest:
     specifier: ^0.31.4
-    version: 0.31.4(happy-dom@13.5.3)
+    version: 0.31.4(happy-dom@13.6.0)
 
 packages:
 
@@ -875,7 +875,7 @@ packages:
       magic-string: 0.30.0
       picocolors: 1.0.0
       std-env: 3.3.2
-      vitest: 0.31.4(happy-dom@13.5.3)
+      vitest: 0.31.4(happy-dom@13.6.0)
     dev: true
 
   /@vitest/expect@0.31.4:
@@ -1602,8 +1602,8 @@ packages:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
     dev: true
 
-  /happy-dom@13.5.3:
-    resolution: {integrity: sha512-0JLyo8j0weBc+neK+KlHIOPlprVmWPwbYqwhCgKEQrC+twLFhz2PXul3Cnn1e9HjHIECN8EoTJ1ksRYansRdjQ==}
+  /happy-dom@13.6.0:
+    resolution: {integrity: sha512-4sVRENyxCSqAiOzAfPiohU56/D5bcLJmyT3WGoqjVX1IXq+ScTsrLR98RUODHz0nVvSLNW86CJzRXdPoSdw/yg==}
     engines: {node: '>=16.0.0'}
     dependencies:
       entities: 4.5.0
@@ -2506,7 +2506,7 @@ packages:
       fsevents: 2.3.3
     dev: true
 
-  /vitest@0.31.4(happy-dom@13.5.3):
+  /vitest@0.31.4(happy-dom@13.6.0):
     resolution: {integrity: sha512-GoV0VQPmWrUFOZSg3RpQAPN+LPmHg2/gxlMNJlyxJihkz6qReHDV6b0pPDcqFLNEPya4tWJ1pgwUNP9MLmUfvQ==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -2551,7 +2551,7 @@ packages:
       chai: 4.3.7
       concordance: 5.0.4
       debug: 4.3.4
-      happy-dom: 13.5.3
+      happy-dom: 13.6.0
       local-pkg: 0.4.3
       magic-string: 0.30.0
       pathe: 1.1.0
